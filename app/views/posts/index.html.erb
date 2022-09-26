@@ -1,0 +1,7 @@
+<h2><%= @user.email %></h2>
+
+<%= render 'posts', title: 'My Posts', posts: @posts %>
+<br/>
+<%= link_to 'New Post', new_post_path, class: "btn btn-secondary" %>
+
+

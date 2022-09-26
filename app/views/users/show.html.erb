@@ -1,0 +1,16 @@
+<h2><%= @user.email %></h2>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @user.posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

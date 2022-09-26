@@ -1,0 +1,21 @@
+<%= form_with(model: comment, url: [post, comment]) do |form| %>
+  <% if comment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :Comment, class:"form-label" %>
+    <%= form.text_area :body, class:"form-control", placeholder: "Сomment text", rows:"5", id:"comment" %>
+    <br>
+    <div>
+      <%= form.submit "Add comment", class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

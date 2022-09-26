@@ -1,0 +1,22 @@
+<div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+  <h2><%= @post.title %></h2>
+  <p>
+    <%= @post.body %>
+  </p>
+  <%= link_to 'Edit post', edit_post_path(@post), class: "btn btn-secondary" %> 
+  <br/>
+  <%= @post.likes.count %>
+  <% like = current_user.likes.find_by(post: @post) %>
+  <% if like.nil? %>
+    <%= button_to "Like", likes_path, params: { like: { post_id: @post.id }}, method: :post %>
+  <% else %>
+    <%= button_to "Unlike", like_path(like), method: :delete %>
+  <% end %>
+  <hr class="my-4" />
+
+  <p>
+    <%= render 'comments', comments: @comments, post: @post %>
+  </p>
+</div>
+
+<%= link_to 'Back', posts_path, class: "btn btn-secondary" %>
