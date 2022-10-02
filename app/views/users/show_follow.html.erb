@@ -1,0 +1,11 @@
+<% provide(:title, @title) %>
+<h1><%= @user.email %></h1>
+<%#= link_to "view my profile", @user %>
+<h2>Posts</h2>
+<%= @user.posts.count %>
+<%= render 'layouts/stats' %>
+<%# if @users.any? %>
+<h2><%= @users[0][:email] %></h2>
+<%# @users.each do |user| %>
+<%# if @users.any? %>
+<%#= render @users %>

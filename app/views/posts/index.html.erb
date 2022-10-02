@@ -1,7 +1,22 @@
-<h2><%= @user.email %></h2>
+<div class="row">
+  <div class="col-sm-4"><br/>
+  <div class="row no-gutters">
+    <div class="col"><%= image_tag(@user.photo.url, alt: 'Image', size: "75x75",class:"rounded mx-left d-block") if @user.photo? %></div>
+    <div class="col col-auto"><h2><%= @user.email %></h2></div>
+  </div>
+  <br/>
+    <%= link_to 'Add photo',  add_photo_path, class: "btn btn-primary" %>
+    
+    <%= render 'layouts/stats' %>
+    <br/>
+    <%= render 'users/follow_form' %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
+     <hr class="my-4" />
+  </div>
+  <div class="col-sm-8"><br/>
+    <div class="d-flex" style="height: 100%;">
+  <div class="vr"></div>
 
-<%= render 'posts', title: 'My Posts', posts: @posts %>
-<br/>
-<%= link_to 'New Post', new_post_path, class: "btn btn-secondary" %>
-
-
+    <%= render 'posts', title: 'My Posts', post: @user %>
+    </div>
+</div>

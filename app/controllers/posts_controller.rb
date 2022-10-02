@@ -4,19 +4,19 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @user = current_user
-    @posts = current_user.posts
-    @shared_posts = []
-    #binding.pry
+    #@posts = current_user.posts
+    #@shared_posts = []
+    
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = current_user.posts.find_by(id: params[:id]) #|| current_user.shared_posts.find_by(id: params[:id])
-
-    if @post.blank?
-      flash[:notice] = "You are not subscribed to "
+    @post = Post.find_by(id: params[:id]) #|| current_user.shared_posts.find_by(id: params[:id])
+    @feed_items = current_user.feed#.paginate(page: params[:page])
+    #if @post.blank?
+    #  flash[:notice] = "You are not subscribed to "
       #raise ActiveRecord::RecordNotFound
-    end
+    #end
     @comments = @post.comments.order(completed: :asc)
   end
 

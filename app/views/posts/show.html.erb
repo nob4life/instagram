@@ -1,9 +1,10 @@
 <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
-  <h2><%= @post.title %></h2>
+  <h2 class="text-center"><%= @post.title %></h2>
+  <%= image_tag(@post.image.url, alt: 'Image', size: "192x258",class:"rounded mx-auto d-block") if @post.image? %>
   <p>
     <%= @post.body %>
   </p>
-  <%= link_to 'Edit post', edit_post_path(@post), class: "btn btn-secondary" %> 
+  <div style="float: right"><%= link_to 'Edit post', edit_post_path(@post), class: "btn btn-secondary" %></div> 
   <br/>
   <%= @post.likes.count %>
   <% like = current_user.likes.find_by(post: @post) %>

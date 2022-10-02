@@ -9,7 +9,7 @@
 
     <form class="form-inline my-2 my-lg-0">
       <% if user_signed_in? %>
-      
+        <%= link_to "Edit_Profile", edit_user_registration_path, class:"btn btn-outline-success my-2 my-sm-0" %>
         <%= link_to "Users", users_path, class:"btn btn-outline-success my-2 my-sm-0" %>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-outline-success my-2 my-sm-0" %>
       <% else %>
