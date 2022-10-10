@@ -2,15 +2,26 @@
   <div class="container overflow-hidden">
       <h1 class="text-center"><%= title %></h1>
         <div class="mh-100" style="width: 800px;">
-
-        <% post.posts.each do |post| %> 
-        <br/>
-        <div class="text-bg-secondary p-3">
-        <h4><%= link_to post.title, post %></h4>
-        <p><%= truncate(post.body, length: 150) %></p>
-        <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-        </div>
+        
+        <% feed.each do |user| %> 
+          <% user.posts.each do |post| %>            
+            <br/>
+            <div class="text-bg-secondary p-3">
+            <div class="row no-gutters">
+            <div class="col-1"><%= image_tag(user.photo.url, alt: 'Image', size: "50x50",class:"rounded mx-left d-block") if user.photo? %></div>
+            <div class="col-4"><h4><%= link_to post.title, post %></h4></div>
+            </div>
+            <p><%= truncate(post.body, length: 150) %></p>
+            <% unless user == current_user %> 
+              <% next %>
+            <% else %>
+              <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <% end %>
+            </div>
+          <% end %>
         <% end %>
+        
     </div>
   </div>
 </div>
+

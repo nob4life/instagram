@@ -1,17 +1,39 @@
-<h2><%= @user.email %></h2>
+<div class="row">
+  <div class="col-sm-4"><br/>
+  <div class="row no-gutters">
+    <div class="col"><%= image_tag(@user.photo.url, alt: 'Image', size: "75x75",class:"rounded mx-left d-block") if @user.photo? %></div>
+    <div class="col col-auto"><h2><%= @user.email %></h2></div>
+  </div>
+    <br/>
+    <%= render 'layouts/stats' %>
+    <hr class="my-4" />
+    <%= render 'users/follow_form' %>
+     
+  </div>
+  <div class="col-sm-8"><br/>
+    <div class="d-flex" style="height: 100%;">
+  <div class="vr"></div>
+    <div>
+  <div class="container overflow-hidden">
+      <h1 class="text-center">Posts</h1>
+        <div class="mh-100" style="width: 800px;">
 
-<table class="table table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">Title</th>
-    </tr>
-  </thead>
-  <tbody>
-      <% @user.posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= render 'users/follow_form' %>
+        <% @user.posts.each do |post| %> 
+        <br/>
+        <div class="text-bg-secondary p-3">
+        <div class="row no-gutters">
+        <div class="col-1"><%= image_tag(@user.photo.url, alt: 'Image', size: "50x50",class:"rounded mx-left d-block") if @user.photo? %></div>
+        <div class="col-4"><h4><%= link_to post.title, post %></h4></div>
+        </div>
+        <p><%= truncate(post.body, length: 150) %></p>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+    <%#= render 'posts/posts', title: 'Posts', post: @user %>
+    </div>
+</div>
+<%#= render 'users/follow_form' %>

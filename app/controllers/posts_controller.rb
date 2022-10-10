@@ -4,19 +4,14 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @user = current_user
-    #@posts = current_user.posts
-    #@shared_posts = []
+    @posts = current_user.posts
+    @feed_items = current_user.feed
     
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.find_by(id: params[:id]) #|| current_user.shared_posts.find_by(id: params[:id])
-    @feed_items = current_user.feed#.paginate(page: params[:page])
-    #if @post.blank?
-    #  flash[:notice] = "You are not subscribed to "
-      #raise ActiveRecord::RecordNotFound
-    #end
+    @post = Post.find_by(id: params[:id]) 
     @comments = @post.comments.order(completed: :asc)
   end
 
@@ -59,11 +54,10 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    #binding.pry
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, status: :see_other, notice: "List was successfully destroyed." }
+      format.html { redirect_to posts_url, status: :see_other, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end

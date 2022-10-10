@@ -1,22 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ update ]
   before_action  only: [:index, :following, :followers]
+  before_action :set_user, only: %i[ update add_photo ]
   
-  def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following
-    #binding.pry
-    render 'show_follow', status: :unprocessable_entity
-  end
   
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    #@users = @user.followers.paginate(page: params[:page])
-    render 'show_follow', status: :unprocessable_entity
-  end
-
   def index
     @users = User.all
   end
@@ -28,17 +14,31 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        
+        format.html { redirect_to root_url(@user), notice: "Photo was successfully updated." }
       else
-        raise "exit"
-        #format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end
 
   def add_photo
-    @user = current_user
   end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow', status: :unprocessable_entity
+  end
+  
+  def followers 
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow', status: :unprocessable_entity
+  end
+
 
   private
 

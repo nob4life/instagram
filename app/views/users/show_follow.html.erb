@@ -1,11 +1,9 @@
-<% provide(:title, @title) %>
-<h1><%= @user.email %></h1>
-<%#= link_to "view my profile", @user %>
-<h2>Posts</h2>
-<%= @user.posts.count %>
-<%= render 'layouts/stats' %>
-<%# if @users.any? %>
-<h2><%= @users[0][:email] %></h2>
-<%# @users.each do |user| %>
-<%# if @users.any? %>
-<%#= render @users %>
+<h2>Follow</h2>
+  <% @users.each do |user| %>
+    <div class="row no-gutters">
+    <div class="col-1"><%= image_tag(user.photo.url, alt: 'Image', size: "50x50",class:"rounded mx-left d-block") if user.photo? %></div>
+    <div class="col-4"><h2><%= link_to user.email, user_path(user) %></h2></div>
+    </div>
+    <br/>
+  <% end %>
+

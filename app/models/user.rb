@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :photo, ImageUploader
-  has_many :posts
+  has_many :posts, dependent: :delete_all
   has_many :likes
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -34,10 +34,8 @@ class User < ApplicationRecord
   
   def feed
     following_ids = "SELECT followed_id FROM relationships
-                        WHERE follower_id = :user_id"
-
-    Post.where("user_id IN (#{following_ids})
-                OR user_id = :user_id", user_id: id)
+                        WHERE follower_id = :id"
+     User.where("id = :id OR id IN (#{following_ids})", id: id)
   end
 
 end
