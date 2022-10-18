@@ -1,6 +1,6 @@
 <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
   <h2 class="text-center"><%= @post.title %></h2>
-  <%= image_tag(@post.image.url, alt: 'Image', size: "192x258",class:"rounded mx-auto d-block") if @post.image? %>
+  <%= image_tag(@post.image.url, alt: 'Image', size: "600x400",class:"rounded mx-auto d-block") if @post.image? %>
   <p>
     <%= @post.body %>
   </p>

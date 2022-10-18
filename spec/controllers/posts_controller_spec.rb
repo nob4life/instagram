@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do 
   let(:user) { create(:user)}
-  #let(:user1) { create(:user)}
   
   before { sign_in user }
   
@@ -64,13 +63,6 @@ RSpec.describe PostsController, type: :controller do
       subject
       expect(assigns(:post)).to eq(post)
     end
-
-    # context "when user tries to edit posts that he does not own" do
-
-    #   it 'returns exception' do
-    #     expect { subject }.to raise_exception(ActiveRecord::RecordNotFound)
-    #   end
-    # end
   end
 
 
@@ -143,14 +135,5 @@ RSpec.describe PostsController, type: :controller do
     it 'deletes object from DB' do
       expect { subject }.to change(Post, :count).by(-1)
     end
-
-    #context "when user tries to remove someones post" do
-    #  let(:post) { create :post }
-
-    #  it 'redirects to posts index' do
-    #    expect { subject }.to raise_exception(ActiveRecord::RecordNotFound).and(
-    #    change(user.posts, :count).by(0))
-    #  end
-    #end
   end
 end

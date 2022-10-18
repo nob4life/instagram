@@ -30,10 +30,6 @@ gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 
 gem 'mini_magick', '~> 4.11'
 
-#gem 'will_paginate', '~> 3.3', '>= 3.3.1'
-
-#gem 'bootstrap-will_paginate', '~> 1.0'
-
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -45,6 +41,7 @@ gem 'mini_magick', '~> 4.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
 
 group :development, :test do
   gem 'pry', '~> 0.14.1'

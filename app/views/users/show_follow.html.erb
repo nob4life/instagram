@@ -1,4 +1,4 @@
-<h2>Follow</h2>
+<h2><%= @title %></h2>
   <% @users.each do |user| %>
     <div class="row no-gutters">
     <div class="col-1"><%= image_tag(user.photo.url, alt: 'Image', size: "50x50",class:"rounded mx-left d-block") if user.photo? %></div>

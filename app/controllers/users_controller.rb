@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action  only: [:index, :following, :followers]
   before_action :set_user, only: %i[ update add_photo ]
   
   

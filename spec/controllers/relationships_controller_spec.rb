@@ -1,15 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe RelationshipsController, type: :controller do 
-  let!(:luke) { create(:user, email: "luke@luke.com" ) }
-  let!(:jude) { create(:user, email: "jude@jude.com" ) }
 
-  describe "signed-in user can follow and unfollow other users" do
-    before { sign_in luke }
-    visit user_path(jude)
-    click_on "Follow"
-    expect(page).not_to have_button("Follow")
-    expect(page).to have_button("Unfollow")
+  let(:relationship) { Relationship.new(follower_id: 1, followed_id: 2) }
 
+  it "should be valid" do
+    expect(relationship).to be_valid
   end
+
+  it "should require a follower_id" do
+    relationship.follower_id = nil
+    expect(relationship).not_to be_valid
+  end
+
+  it "should require a followed_id" do
+    relationship.followed_id = nil
+    expect(relationship).not_to be_valid
+  end
+
 end

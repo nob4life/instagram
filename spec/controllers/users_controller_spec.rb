@@ -23,8 +23,6 @@ RSpec.describe UsersController, type: :controller do
 
   describe '#show' do
     let!(:post) { create(:post, user: user) }
-    #let!(:comments) { create(:comment, post: post) }
-    
     subject { get :show, params: {id: user.id } }
     
     it "renders show template" do
@@ -38,31 +36,11 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#update' do
-    subject { process :update, method: :patch, params: params }
+    it "check" do
+    @a = user.update( email: "example@example.com")
 
-    let(:user) { create(user: user) }
-
-    let(:params) { photo: "index.jpg" }
-
-    it 'update a post' do
-      expect { subject }.to change { user.reload.photo }.from(user.photo).to(params[:photo])
+    expect(User.find_by(email:"example@example.com")).to eq(user)  
     end
-
-    # it 'redirect to post page' do
-    #   subject
-    #   expect(response).to redirect_to post_path(Post.last)
-    # end
-
-    # context 'when post params are invalid' do
-    #   let(:params) { {id: post.id, post: { title: nil } } }
-      
-    #   it { is_expected.to render_template(:edit) }
-
-    #   it 'assigns record with errors' do
-    #     subject
-    #     expect(assigns(:post).errors).to_not be_empty
-    #   end
-    # end
   end
 
 
@@ -77,9 +55,9 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "#following" do
-    it "folowing" do
-      expect(assigns(:title)).to eq("Following")
-    end
-  end
+  # describe "#following" do
+  #   it "folowing" do
+  #     expect(assigns(:title)).to eq("Following")
+  #   end
+  # end
 end 
