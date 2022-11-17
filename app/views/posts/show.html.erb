@@ -4,7 +4,9 @@
   <p>
     <%= @post.body %>
   </p>
-  <div style="float: right"><%= link_to 'Edit post', edit_post_path(@post), class: "btn btn-secondary" %></div> 
+  <% if current_user.id == @post.user_id %>
+    <div style="float: right"><%= link_to 'Edit post', edit_post_path(@post), class: "btn btn-secondary" %></div> 
+  <% end %>
   <br/>
   <%= @post.likes.count %>
   <% like = current_user.likes.find_by(post: @post) %>

@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id]) 
+
     @comments = @post.comments
   end
 
@@ -17,6 +18,9 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if @post.blank?
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def create

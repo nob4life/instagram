@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :photo, ImageUploader
+  has_many :comments
   has_many :posts, dependent: :delete_all
   has_many :likes
   has_many :active_relationships, class_name: "Relationship",

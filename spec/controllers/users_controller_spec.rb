@@ -54,10 +54,4 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
   end
-
-  # describe "#following" do
-  #   it "folowing" do
-  #     expect(assigns(:title)).to eq("Following")
-  #   end
-  # end
 end 
